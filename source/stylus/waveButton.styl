@@ -1,0 +1,31 @@
+.wave-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.wave-button__inner {
+  position: absolute;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  pointer-events: none;
+  opacity: 0;
+  background-color: #fff;
+  background-color: rgba(255, 0, 0, 0.2);
+  top: 100%;
+  left: 100%;
+  display: block;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
