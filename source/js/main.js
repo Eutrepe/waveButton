@@ -1,6 +1,4 @@
-import WaveButton from './WaveButton/WaveButton';
-
-var elements = document.querySelectorAll(".wave-button");
+/* ie11 support */
 
 if (typeof Object.assign != 'function') {
   (function () {
@@ -25,6 +23,13 @@ if (typeof Object.assign != 'function') {
     };
   })();
 }
+
+
+
+
+import WaveButton from './WaveButton/WaveButton';
+
+var elements = document.querySelectorAll(".wave-button");
 
 Array.prototype.forEach.call(elements, function(el, i){
 
