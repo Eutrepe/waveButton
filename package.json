@@ -1,6 +1,6 @@
 {
   "name": "WaveButtonPlugin",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Wave Button effect in vanila javascript ES6",
   "main": "index.html",
   "scripts": {

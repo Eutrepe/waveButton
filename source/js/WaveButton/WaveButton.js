@@ -59,7 +59,10 @@ class WaveButton {
       "webkitTransitionDuration": transitionDuration,
       "transitionDuration": transitionDuration,
 
+      "willChange": "transform, opacity",
+
     });
+
 
     setTimeout(() => {
       setStyle(span, {
@@ -67,7 +70,7 @@ class WaveButton {
         "webkitTransform": scale,
         "transform": scale,
       });
-    }, 10 );
+    }, 50 );
 
 
     setTimeout(() => {
@@ -75,6 +78,7 @@ class WaveButton {
     }, ( time - thirdTime) );
 
     setTimeout(() => {
+      span.style.willChange = "auto";
       element.removeChild(span);
     }, ( time + thirdTime) );
 
@@ -87,8 +91,10 @@ class WaveButton {
   makeButton() {
     this.margeSettings();
 
-    map.get(this).element.addEventListener("click", (event) =>{
+    map.get(this).element.addEventListener("click", (event) => {
+
       this.buildButton(event);
+
     });
   }
 
