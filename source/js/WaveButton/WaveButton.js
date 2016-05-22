@@ -119,14 +119,14 @@ class WaveButton {
   init() {
     this.margeSettings();
 
-    addMultiListener(map.get(this).element, "mousedown touchstart", (event) => {
+    addMultiListener(map.get(this).element, "mousedown", (event) => {
 
       this.makeButton(event);
 
     }, false);
 
 
-     addMultiListener(map.get(this).element, "mouseup touchend", (event) => {
+     addMultiListener(map.get(this).element, "mouseup", (event) => {
 
       this.removeButton(event);
 
