@@ -6,6 +6,15 @@ function setStyle (el, styles) {
   }
 }
 
+
+function addMultiListener(elem, events, callback, useCapture) {
+  const eventsList = events.split(' ');
+
+  for(let i = 0, len = eventsList.length; i < len; ++i) {
+    elem.addEventListener(eventsList[i], callback, useCapture);
+  }
+}
+
 const map = new WeakMap();
 
 class WaveButton {
@@ -13,6 +22,7 @@ class WaveButton {
     map.set(this, {
       element,
       settings,
+      spanArray: [],
     });
   }
 
@@ -25,7 +35,7 @@ class WaveButton {
   }
 
 
-  buildButton(event) {
+  makeButton(event) {
     const element = map.get(this).element;
     const settings = map.get(this).settings;
 
@@ -42,7 +52,6 @@ class WaveButton {
     const transitionProperty = "opacity, transform";
     const transitionTimingFunction = settings.transitionTimingFunction;
     const transitionDuration = time + "ms";
-    const thirdTime = parseInt(time / 3, 10);
 
     span.className = settings.customClass;
 
@@ -73,8 +82,31 @@ class WaveButton {
     }, 50 );
 
 
+    df.appendChild(span);
+    map.get(this).spanArray.push(span);
+    element.appendChild(df);
+
+  }
+
+  removeButton() {
+    const element = map.get(this).element;
+    const settings = map.get(this).settings;
+
+    const time = parseInt(settings.transitionDuration, 10);
+    const thirdTime = parseInt(time / 3, 10);
+
+    const scaleValue = element.offsetWidth / (parseInt(settings.scale, 10) - 1);
+    const scale = 'scale(' + scaleValue + ')';
+
+    const span = map.get(this).spanArray.shift();
+
     setTimeout(() => {
-      span.style.opacity = 0;
+        setStyle(span, {
+        "opacity": 0,
+        "webkitTransform": scale,
+        "transform": scale,
+      });
+
     }, ( time - thirdTime) );
 
     setTimeout(() => {
@@ -82,20 +114,24 @@ class WaveButton {
       element.removeChild(span);
     }, ( time + thirdTime) );
 
-
-    df.appendChild(span);
-    element.appendChild(df);
-
   }
 
-  makeButton() {
+  init() {
     this.margeSettings();
 
-    map.get(this).element.addEventListener("click", (event) => {
+    addMultiListener(map.get(this).element, "mousedown touchstart", (event) => {
 
-      this.buildButton(event);
+      this.makeButton(event);
 
-    });
+    }, false);
+
+
+     addMultiListener(map.get(this).element, "mouseup touchend", (event) => {
+
+      this.removeButton(event);
+
+    }, false);
+
   }
 
 }

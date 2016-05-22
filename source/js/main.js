@@ -34,5 +34,5 @@ var elements = document.querySelectorAll(".wave-button");
 Array.prototype.forEach.call(elements, function(el, i){
 
   const waveButton = new WaveButton(el, { });
-  waveButton.makeButton();
+  waveButton.init();
 });
