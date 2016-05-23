@@ -79,7 +79,7 @@ class WaveButton {
         "webkitTransform": scale,
         "transform": scale,
       });
-    }, 50 );
+    }, 100 );
 
 
     df.appendChild(span);
