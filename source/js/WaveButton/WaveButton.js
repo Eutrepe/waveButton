@@ -79,7 +79,7 @@ class WaveButton {
         "webkitTransform": scale,
         "transform": scale,
       });
-    }, 100 );
+    }, 30 );
 
 
     df.appendChild(span);
@@ -112,7 +112,7 @@ class WaveButton {
     setTimeout(() => {
       span.style.willChange = "auto";
       element.removeChild(span);
-    }, ( time + thirdTime) );
+    }, ( time + thirdTime - 30) );
 
   }
 
