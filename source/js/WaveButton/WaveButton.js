@@ -126,7 +126,7 @@ class WaveButton {
     }, false);
 
 
-     addMultiListener(map.get(this).element, "mouseup", (event) => {
+     addMultiListener(map.get(this).element, "mouseup mouseleave", (event) => {
 
       this.removeButton(event);
 
