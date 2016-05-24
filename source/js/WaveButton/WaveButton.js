@@ -79,7 +79,7 @@ class WaveButton {
         "webkitTransform": scale,
         "transform": scale,
       });
-    }, 30 );
+    }, 32 );
 
 
     df.appendChild(span);
@@ -98,22 +98,25 @@ class WaveButton {
     const scaleValue = element.offsetWidth / (parseInt(settings.scale, 10) - 1);
     const scale = 'scale(' + scaleValue + ')';
 
-    const span = map.get(this).spanArray.shift();
+    const spanArray = map.get(this).spanArray;
 
-    setTimeout(() => {
-        setStyle(span, {
-        "opacity": 0,
-        "webkitTransform": scale,
-        "transform": scale,
-      });
+    if (spanArray.length) {
+      const span = spanArray.shift();
 
-    }, ( time - thirdTime) );
+      setTimeout(() => {
+          setStyle(span, {
+          "opacity": 0,
+          "webkitTransform": scale,
+          "transform": scale,
+        });
 
-    setTimeout(() => {
-      span.style.willChange = "auto";
-      element.removeChild(span);
-    }, ( time + thirdTime - 30) );
+      }, ( time - thirdTime) );
 
+      setTimeout(() => {
+        span.style.willChange = "auto";
+        element.removeChild(span);
+      }, ( time + thirdTime - 32) );
+    }
   }
 
   init() {
