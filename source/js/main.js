@@ -25,8 +25,6 @@ if (typeof Object.assign != 'function') {
 }
 
 
-
-
 import WaveButton from './WaveButton/WaveButton';
 
 var elements = document.querySelectorAll(".wave-button");

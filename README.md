@@ -9,5 +9,4 @@
 ##TODO
 
 - more tests
-- add more effects and then change plugin name :)
 - make documentation and example use :)

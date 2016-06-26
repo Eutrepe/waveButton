@@ -26,7 +26,7 @@ class WaveButton {
     });
   }
 
-  margeSettings() {
+  mergeSettings() {
     if ((typeof map.get(this).settings).toLowerCase() !== 'object') {
       map.get(this).settings = {};
     }
@@ -75,11 +75,10 @@ class WaveButton {
 
     setTimeout(() => {
       setStyle(span, {
-        "opacity": 1,
         "webkitTransform": scale,
         "transform": scale,
       });
-    }, 32 );
+    }, 50 );
 
 
     df.appendChild(span);
@@ -120,7 +119,7 @@ class WaveButton {
   }
 
   init() {
-    this.margeSettings();
+    this.mergeSettings();
 
     addMultiListener(map.get(this).element, "mousedown", (event) => {
 
@@ -129,7 +128,7 @@ class WaveButton {
     }, false);
 
 
-     addMultiListener(map.get(this).element, "mouseup mouseleave touchcancel", (event) => {
+     addMultiListener(map.get(this).element, "mouseup mouseleave dblclick touchcancel", (event) => {
 
       this.removeButton(event);
 

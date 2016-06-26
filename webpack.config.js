@@ -5,6 +5,7 @@ module.exports = {
   output: {
     filename: 'waveButton.min.js',
   },
+
   debug: true,
   devtool: 'source-map',
   module: {
