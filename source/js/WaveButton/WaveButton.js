@@ -11,6 +11,7 @@ function addMultiListener(elem, events, callback, useCapture) {
   const eventsList = events.split(' ');
 
   for(let i = 0, len = eventsList.length; i < len; ++i) {
+
     elem.addEventListener(eventsList[i], callback, useCapture);
   }
 }
@@ -112,7 +113,6 @@ class WaveButton {
       }, ( time - thirdTime) );
 
       setTimeout(() => {
-        span.style.willChange = "auto";
         element.removeChild(span);
       }, ( time + thirdTime - 32) );
     }
@@ -121,14 +121,36 @@ class WaveButton {
   init() {
     this.mergeSettings();
 
-    addMultiListener(map.get(this).element, "mousedown", (event) => {
 
-      this.makeButton(event);
+    // map.get(this).element.onmousedown = function(){
+    //   alert("aa")  ;
+    // };
 
-    }, false);
+    map.get(this).element.ontouchstart = function(){
+      console.log("bb")  ;
+    };
+
+    // map.get(this).element.addEventListener("mousedown", () => {
+    //   this.makeButton(event);
+    // });
+
+    // map.get(this).element.addEventListener("touchstart", () => {
+    //   map.get(this).element.removeEventListener("mousedown", () => {});
+    //   this.makeButton(event);
+    // });
+
+    // addMultiListener(map.get(this).element, "mousedown touchstart", (event) => {
+
+    //   map.get(this).element.removeEventListener("mousedown", () => {});
+
+    //   this.makeButton(event);
+
+    //   console.dir(map.get(this).element);
+
+    // }, false);
 
 
-     addMultiListener(map.get(this).element, "mouseup mouseleave dblclick touchcancel", (event) => {
+     addMultiListener(map.get(this).element, "mouseup mouseleave dblclick touchend touchcancel", (event) => {
 
       this.removeButton(event);
 
