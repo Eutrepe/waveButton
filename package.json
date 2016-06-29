@@ -1,6 +1,6 @@
 {
   "name": "WaveButtonPlugin",
-  "version": "0.9.2",
+  "version": "1.0.1",
   "description": "Wave Button effect in vanila javascript ES6",
   "main": "index.html",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Eutrepe/waveButton.git"
   },
   "keywords": [
-    "Morph"
+    "wave, button"
   ],
   "author": "Maciej Bobrowski",
   "license": "MIT",

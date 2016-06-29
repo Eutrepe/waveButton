@@ -6,6 +6,12 @@ function setStyle (el, styles) {
   }
 }
 
+function is_touch_device() {
+  return (('ontouchstart' in window)
+        || (navigator.MaxTouchPoints > 0)
+        || (navigator.msMaxTouchPoints > 0));
+}
+
 
 function addMultiListener(elem, events, callback, useCapture) {
   const eventsList = events.split(' ');
@@ -44,8 +50,8 @@ class WaveButton {
     const span = document.createElement("span");
 
     const rect = element.getBoundingClientRect();
-    const posX = event.clientX - (rect.left + document.body.scrollLeft) + "px";
-    const posY = event.clientY - (rect.top + document.body.scrollTop) + "px";
+    const posX = (event.clientX || event.changedTouches[0].clientX) - (rect.left + document.body.scrollLeft) + "px";
+    const posY = (event.clientY || event.changedTouches[0].clientY) - (rect.top + document.body.scrollTop) + "px";
     const scaleValue = element.offsetWidth / parseInt(settings.scale, 10);
     const scale = 'scale(' + scaleValue + ')';
     const time = parseInt(settings.transitionDuration, 10);
@@ -121,40 +127,33 @@ class WaveButton {
   init() {
     this.mergeSettings();
 
+      if (!is_touch_device()) {
+        addMultiListener(map.get(this).element, "mousedown", (event) => {
 
-    // map.get(this).element.onmousedown = function(){
-    //   alert("aa")  ;
-    // };
+          this.makeButton(event);
 
-    map.get(this).element.ontouchstart = function(){
-      console.log("bb")  ;
-    };
-
-    // map.get(this).element.addEventListener("mousedown", () => {
-    //   this.makeButton(event);
-    // });
-
-    // map.get(this).element.addEventListener("touchstart", () => {
-    //   map.get(this).element.removeEventListener("mousedown", () => {});
-    //   this.makeButton(event);
-    // });
-
-    // addMultiListener(map.get(this).element, "mousedown touchstart", (event) => {
-
-    //   map.get(this).element.removeEventListener("mousedown", () => {});
-
-    //   this.makeButton(event);
-
-    //   console.dir(map.get(this).element);
-
-    // }, false);
+        }, false);
 
 
-     addMultiListener(map.get(this).element, "mouseup mouseleave dblclick touchend touchcancel", (event) => {
+        addMultiListener(map.get(this).element, "mouseup mouseleave dblclick", (event) => {
 
-      this.removeButton(event);
+          this.removeButton(event);
 
-    }, false);
+        }, false);
+
+      } else {
+        addMultiListener(map.get(this).element, "touchstart", (event) => {
+
+          this.makeButton(event);
+
+        }, false);
+
+         addMultiListener(map.get(this).element, "touchend", (event) => {
+
+          this.removeButton(event);
+
+        }, false);
+      }
 
   }
 
