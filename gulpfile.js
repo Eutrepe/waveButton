@@ -20,7 +20,7 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('js', function () {
-  return gulp.src('./source/js/app.js')
+  return gulp.src('./source/js/main.js')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(webpack(require('./webpack.config.js')))

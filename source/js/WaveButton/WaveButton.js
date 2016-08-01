@@ -22,6 +22,7 @@ function addMultiListener(elem, events, callback, useCapture) {
   }
 }
 
+
 const map = new WeakMap();
 
 class WaveButton {
